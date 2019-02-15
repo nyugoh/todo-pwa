@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>To-do App - PWA</title>
+    <!-- Bootstrap styling styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Favicon link, seen on the title bar -->
+    <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
+
+    <!-- Github octicons for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/8.3.0/build.css">
+
+    <link rel="stylesheet" href="./assets/css/styles.css">
+
+</head>
+<body>
+    <!-- App shell begins here -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #e3f2fd;">
+        <div class="container">
+            <a class="navbar-brand" href="#">TODO - PWA</a>
+            <ul class="my-2 my-lg-0">
+                <button type="button" data-toggle="modal" data-target="#addTaskModal" class="btn btn-outline-success my-2 my-sm-0" >Add </button>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5 pt-5">
+        
+        <h2 class="text-primary text-center">Monday, 15, February 2019</h2>
+        <div class="col-12 margin-top">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Task</th>
+                        <th scope="col">Priority</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="task-card">
+                        <td>Hack Facebook</td>
+                        <td>Urgent</td>
+                        <td><span class="badge badge-success">TODO</span></td>
+                        <td>
+                            <img src="./assets/images/svg/si-glyph-trash.svg" onclick="app.deleteTask(1)"/>
+                            <img src="./assets/images/svg/si-glyph-checked.svg" onclick="app.markTaskAsComplete(2)"/>
+                    
+                        </td>
+                    </tr>
+                    <tr class="task-card">
+                        <td>Hack Facebook</td>
+                        <td>Urgent</td>
+                        <td><span class="badge badge-success">TODO</span></td>
+                        <td>
+                            <img src="./assets/images/svg/si-glyph-trash.svg"/>
+                            <img src="./assets/images/svg/si-glyph-checked.svg"/>
+                    
+                        </td>
+                    </tr>
+                    <tr class="task-card">
+                        <td>Hack Facebook</td>
+                        <td>Urgent</td>
+                        <td><span class="badge badge-success">TODO</span></td>
+                        <td>
+                            <img src="./assets/images/svg/si-glyph-trash.svg"/>
+                            <img src="./assets/images/svg/si-glyph-checked.svg"/>
+                    
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- App shell ends here -->
+
+    <!-- Add to-do modal -->
+      <!-- Modal -->
+      <div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addTaskModalLabel">Add Task</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="task">Task</label>
+                        <input type="text" class="form-control" id="task" aria-describedby="taskHelp" placeholder="Enter task">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" id="description" aria-describedby="descriptionHelp" placeholder="Enter description">
+                    </div>
+                    <div class="form-group">
+                        <label for="prioritySelect">Priority</label>
+                        <select class="form-control" id="prioritySelect">
+                            <option value="0">Low</option>
+                            <option value="1" selected>Normal</option>
+                            <option value="2">High</option>
+                            <option value="3">Urgent</option>
+                        </select>
+                    </div>                
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- Modal ends here -->
+
+    <!-- All the required files begin here -->
+
+    <!-- Import Bootstrap files -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- Import the main.js script here -->
+    <script src="./assets/js/main.js"></script>
+
+    <!-- End of all our reuquired files -->
+</body>
+</html>
