@@ -2,7 +2,6 @@
   "name": "todo-pwa",
   "version": "1.0.0",
   "description": "To-Do PWA",
-  "main": "dynamicDate.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,13 +9,10 @@
     "type": "git",
     "url": "git+https://github.com/schezfaz/todo-pwa.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Joe Nyugoh",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/schezfaz/todo-pwa/issues"
   },
-  "homepage": "https://github.com/schezfaz/todo-pwa#readme",
-  "dependencies": {
-    "moment": "^2.24.0"
-  }
+  "homepage": "https://github.com/schezfaz/todo-pwa#readme"
 }
