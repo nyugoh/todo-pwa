@@ -25,14 +25,19 @@ let initialData = [
 let taskPriorities = [ 'low', 'normal', 'high', 'urgent'];
 let priorityBadges = [ 'primary', 'success', 'warning', 'danger'];
 let todos = [];
+
 /**
 * Call the function to add the default data
  * @return null
 * */
 function loadInitialData() {
-    $('#tasks').html('');
+    $('#tasks').html(''); // Empty the table
+    
+    // Display a message if there are no todos
+    if(todos.length == 0){
+        $('#tasks').html('<div class="text-center m-2 p-2"><p class="text-primary text-lead">You have no todos, seems you have nothing todo.</p><p>Add items using the ADD button on the top-right.</p></div>');
+    }
     todos.forEach(addTask);
-
 }
 
 /**
@@ -43,9 +48,10 @@ function loadInitialData() {
 function addTask(task, index) {
     let tableBody = $('#tasks');
     let taskRow;
+
     if (task == null) return alert('Invalid task object');
-    if (task.task == null) return alert('Task name is required');
-    if (task.description == null) return alert('Task description is required');
+    if (task.task.length <= 0) return alert('Task name is required');
+    if (task.description <= 0) return alert('Task description is required');
 
     // create a row
     taskRow = `
@@ -68,16 +74,16 @@ function addTask(task, index) {
 * Remove task from list
 * */
 function deleteTask(taskId) {
-    delete todos[taskId];
-    loadInitialData();
+    todos.splice(taskId, 1);
+    loadInitialData(); //reload the data again
 }
 
 /*
 * Edit a todo item
 * */
 function editTask(taskId) {
-    $('#editTaskModal').modal('show');
     let todo = todos[taskId];
+    $('#editTaskModal').modal('show');
     $('#editTaskModalLabel').text(`Edit ${todo.task}`);
     $('#editTask').val(todo.task);
     $('#taskId').val(taskId);
@@ -96,7 +102,7 @@ function editTask(taskId) {
 * */
 function markTaskAsComplete(taskId) {
     todos[taskId].isDone = !todos[taskId].isDone; // Negate the current status
-    loadInitialData();
+    loadInitialData(); // reload the data again
 }
 
 /**
@@ -128,8 +134,8 @@ addTaskForm.on('submit', function(e){
     let priority = $('#prioritySelect').val();
     let dueDate = $('#datepicker').val();
 
-    if(task == null) return alert('Task name is required');
-    if(description == null) return alert('Task description is required');
+    if(task.length <= 0) return alert('Task name is required');
+    if(description.length <= 0) return alert('Task description is required');
     // TODO:: Check for due dates that are back in time
 
     let todo = {
@@ -147,15 +153,17 @@ addTaskForm.on('submit', function(e){
 // Handle edit todo event
 let editTaskForm = $('#editTaskForm');
 editTaskForm.on('submit', function(e){
-    e.preventDefault();
+    e.preventDefault(); // prevent form from been submitted normally
+
     let taskId = $('#taskId').val();
     let task = $('#editTask').val();
     let description = $('#editDescription').val();
     let priority = $('#editPrioritySelect').val();
     let dueDate = $('#editDatePicker').val();
 
-    if(task == null) return alert('Task name is required');
-    if(description == null) return alert('Task description is required');
+    if(task.length <= 0) return alert('Task name is required');
+    if(description.length <= 0) return alert('Task description is required');
+    // TODO:: Check for due dates that are back in time
 
     let todo = {
         task,
@@ -163,12 +171,13 @@ editTaskForm.on('submit', function(e){
         priority,
         dueDate
     };
-    todos[taskId] = todo;
-    loadInitialData();
+    todos[taskId] = todo; // edit that item in array list
+
+    loadInitialData(); // reload the table
     $('#editTaskModal').modal('hide');
 
 });
 
 
-todos = todos.concat(initialData);
+todos = todos.concat(initialData); // adds initial data to the main list of todos
 loadInitialData();
