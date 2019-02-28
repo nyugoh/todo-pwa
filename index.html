@@ -10,6 +10,9 @@
 
     <link href="./assets/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
+     <!-- manifest here -->
+    <link rel="manifest" href="manifest.json">
+
     <!-- Favicon link, seen on the title bar -->
     <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
 
@@ -139,6 +142,7 @@
     </div>
     <!-- Modal ends here -->
 
+
     <!-- All the required files begin here -->
 
     <!-- Import Bootstrap files -->
@@ -156,5 +160,21 @@
 
 
     <!-- End of all our reuquired files -->
+
+    
+      <!-- register service worker 
+ check if the browser supports service workers, and if it does, register the service worker-->
+        <script>
+
+          if ('serviceWorker' in navigator) 
+          {
+          window.addEventListener('load', function() {
+            navigator.serviceWorker.register('sw.js')
+            .then(function() { console.log("Service Worker Registered :)"); });
+          }
+          );
+        }  
+        </script> 
+    <!-- end of service worker -->
 </body>
 </html>
