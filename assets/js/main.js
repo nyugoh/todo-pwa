@@ -112,6 +112,20 @@ var today = document.getElementById('currentDate');
 
 today.innerHTML = moment().format("MMMM Do YYYY");
 
+function clock() {
+    setInterval(function(){
+        let date = new Date();
+        let hour = date.getHours();
+        let minutes = date.getMinutes();
+        let seconds = date.getSeconds()
+
+        hour = hour<10? `0${hour}`: hour;
+        minutes = minutes<10? `0${minutes}`: minutes;
+        seconds = seconds<10? `0${seconds}`: seconds;
+        $('#currenttime').html(`${hour}:${minutes}:${seconds}`);
+    }, 1000);
+}
+clock();
 /*
 * Initialize date pickers
 * */
