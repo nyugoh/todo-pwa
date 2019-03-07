@@ -2,4 +2,10 @@
     display: inline;
     width: 25px;
     margin: 5px 10px;
+    cursor: pointer;
+}
+
+.done {
+    text-decoration: line-through;
+    background: lightgrey;
 }
